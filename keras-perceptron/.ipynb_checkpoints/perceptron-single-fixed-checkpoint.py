@@ -13,6 +13,7 @@ config = run.config
 # load data
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
+# create labels
 is_five_train = y_train == 5
 is_five_test = y_test == 5
 labels = ["Not Five", "Is Five"]
@@ -22,10 +23,10 @@ img_height = X_train.shape[2]
 
 # create model
 model=Sequential()
-model.add(Flatten(input_shape=(img_width,img_height))) #needs to input the shape for the first layer only
-model.add(Dense(1)) # Dense=1 means one perceptron which provides one output
-model.compile(loss='mse', optimizer='adam',
-                metrics=['accuracy'])
+model.add(Flatten(input_shape=(img_width,img_height)))
+model.add(Dense(1, activation='sigmoid'))
+model.compile(loss='binary_crossentropy', optimizer='adam',
+                metrics=['binary_accuracy'])
 
 # Fit the model
 model.fit(X_train, is_five_train, epochs=3, validation_data=(X_test, is_five_test),

@@ -22,8 +22,8 @@ img_height = X_train.shape[2]
 
 # create model
 model=Sequential()
-model.add(Flatten(input_shape=(img_width,img_height))) #needs to input the shape for the first layer only
-model.add(Dense(1)) # Dense=1 means one perceptron which provides one output
+model.add(Flatten(input_shape=(img_width,img_height)))
+model.add(Dense(1))
 model.compile(loss='mse', optimizer='adam',
                 metrics=['accuracy'])
 
